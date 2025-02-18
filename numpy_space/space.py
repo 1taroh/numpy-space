@@ -28,6 +28,16 @@ class Space:
         s = self.space & other.space
         return Space(nparray_list(s))
 
+    def is_orthogonal(self, other, tol=1e-10):
+        for v_tuple in self.space:
+            v = np.array(v_tuple)
+            for u_tuple in other.space:
+                u = np.array(u_tuple)
+                if np.dot(v,u) > tol:
+                    return False
+
+        return True
+
 def nparray_list(s:set):
     return [np.array(vector) for vector in s]
 

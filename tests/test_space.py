@@ -36,5 +36,16 @@ class TestSpaceMethods(unittest.TestCase):
         # print(W)
         self.assertSetEqual((V*U).space, W.space)
 
+    def test_orthogonal(self):
+        x = [np.array([1,0,0]), np.array([0,1,0])]
+        y = [np.array([1,0,0])]
+        z = [np.array([0,0,1])]
+        V = Space(x)
+        U = Space(y)
+        W = Space(z)
+
+        self.assertFalse(V.is_orthogonal(U))
+        self.assertTrue(V.is_orthogonal(W))
+
 if __name__ == "__main__":
     unittest.main()
